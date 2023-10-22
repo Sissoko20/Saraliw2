@@ -1,0 +1,158 @@
+
+
+.container {
+}
+      .flex{
+    
+     
+       
+          height: 25px;
+          
+          position: relative;
+        
+      }
+
+   .profilePresent{
+     position: relative;
+     display: flex;
+   width: 100%;
+   padding: 5px;
+   margin-bottom: 15%;
+   }
+   .profilePresent ion-avatar{
+     display: flex;
+     
+   }
+ 
+   ion-item .textShow{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+   ion-card ion-img{
+     display: flex;
+     /* filter: blur(10px); */
+     height: 100px;  
+   }
+   .btncompte {
+     display: flex;
+    justify-content: center;
+       flex-direction: row;
+   }
+
+   .card{
+    
+   }
+.card ion-card{
+  display: flex;
+  border-radius: 0% 5%;
+  background: #232526;
+  bottom: 75px;
+  height: 180px;
+
+}
+   
+.btnSection{
+    display: flex;
+       justify-content: center;
+       flex-direction: row;
+       border-radius: 20%,20% ;
+       margin-top:27%;
+       position: relative;
+       
+       
+      }
+      .btnSection ion-button{
+       display: flex;
+       
+       
+      }
+   
+    ion-button{
+      --background:#004e78;
+      --border: 20%,20%, 20%,20% ;
+    }
+    .historique{
+      padding: 1%;
+      background: #232627;
+      border-radius: 10px ;
+    }
+  
+   
+  
+    .logo{
+      height: 200px;
+  
+      position: relative;
+  }
+
+
+
+  .logincss ion-item{
+    --ion-background-color:transparent!important
+  }
+  .logincss ion-input{
+    --border-radius:10px;
+    --border-color: #7d7dd8;
+    
+}
+.logoapp{
+  position: absolute;
+    font-size: 9em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+ion-content{
+  --ion-background-color:linear-gradient(#160a12,#414345)} ;
+ion-item{
+  --ion-background-color:transparent !important;
+  
+}
+.padding{
+  padding: 5%; 
+}
+
+.profil{
+  height: 250px;
+  position: relative;
+}
+.profil ion-icon{
+  position: absolute;
+  font-size: 9em;
+  top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+   
+
+ion-content{
+    --ion-background-color:transparent} ;
+  ion-item{
+    --ion-background-color:transparent !important;
+    
+  }
+  
+   

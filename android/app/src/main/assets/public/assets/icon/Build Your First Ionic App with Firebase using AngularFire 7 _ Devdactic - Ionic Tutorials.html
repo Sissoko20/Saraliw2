@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head >
+<meta charset="UTF-8" />
+<title>Build Your First Ionic App with Firebase using AngularFire 7 | Devdactic - Ionic Tutorials</title><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Begin Social Rocket v1.3.0 https://wpsocialrocket.com -->
+<meta property="og:title" content="Build Your First Ionic App with Firebase using AngularFire 7" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build Your First Ionic App with Firebase using AngularFire 7" />
+<!-- / Social Rocket -->
+
+<!-- This site is optimized with the Yoast SEO plugin v10.1.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://devdactic.com/ionic-firebase-angularfire-7/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Build Your First Ionic App with Firebase using AngularFire 7 | Devdactic - Ionic Tutorials" />
+<meta property="og:description" content="Using Firebase as the backend for your Ionic apps is a great choice if you want to build a robust system with live data fast, and by using AngularFire you can use a simple wrapper around the official Firebase JS SDK. In this tutorial we will use the currently latest version 7 of AngularFire which &hellip;" />
+<meta property="og:url" content="https://devdactic.com/ionic-firebase-angularfire-7/" />
+<meta property="og:site_name" content="Devdactic - Ionic Tutorials" />
+<meta property="article:publisher" content="https://www.facebook.com/devdactic" />
+<meta property="article:author" content="devdactic" />
+<meta property="article:tag" content="beginner" />
+<meta property="article:section" content="Ionic" />
+<meta property="article:published_time" content="2021-11-02T16:00:33+00:00" />
+<meta property="article:modified_time" content="2021-10-07T11:51:35+00:00" />
+<meta property="og:updated_time" content="2021-10-07T11:51:35+00:00" />
+<meta property="og:image" content="https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?fit=1620%2C900&#038;ssl=1" />
+<meta property="og:image:secure_url" content="https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?fit=1620%2C900&#038;ssl=1" />
+<meta property="og:image:width" content="1620" />
+<meta property="og:image:height" content="900" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Using Firebase as the backend for your Ionic apps is a great choice if you want to build a robust system with live data fast, and by using AngularFire you can use a simple wrapper around the official Firebase JS SDK. In this tutorial we will use the currently latest version 7 of AngularFire which [&hellip;]" />
+<meta name="twitter:title" content="Build Your First Ionic App with Firebase using AngularFire 7 | Devdactic - Ionic Tutorials" />
+<meta name="twitter:site" content="@schlimmson" />
+<meta name="twitter:image" content="https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?fit=1620%2C900&#038;ssl=1" />
+<meta name="twitter:creator" content="@schlimmson" />
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Person","url":"https://devdactic.com/","sameAs":["https://www.facebook.com/devdactic","https://www.instagram.com/simongrimm_/","https://www.linkedin.com/in/sreimler","https://www.youtube.com/channel/UCZZPgUIorPao48a1tBYSDgg","https://www.pinterest.com/devdactic/","https://twitter.com/schlimmson"],"@id":"#person","name":"Simon Grimm"}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//s0.wp.com' />
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Devdactic - Ionic Tutorials &raquo; Feed" href="https://devdactic.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Devdactic - Ionic Tutorials &raquo; Comments Feed" href="https://devdactic.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Devdactic - Ionic Tutorials &raquo; Build Your First Ionic App with Firebase using AngularFire 7 Comments Feed" href="https://devdactic.com/ionic-firebase-angularfire-7/feed/" />
+<!-- This site uses the Google Analytics by ExactMetrics plugin v6.4.0 - Using Analytics tracking - https://www.exactmetrics.com/ -->
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dNDMyYj");
+	var em_version         = '6.4.0';
+	var em_track_user      = true;
+	var em_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-54634512-1';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( em_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+window.ga = __gaTracker;		__gaTracker('create', 'UA-54634512-1', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('set', 'anonymizeIp', true);
+		__gaTracker('send','pageview');
+		__gaTracker( function() { window.ga = __gaTracker; } );
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + em_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+			window.ga = __gaTracker;		})();
+		}
+</script>
+<!-- / Google Analytics by ExactMetrics -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11.2.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11.2.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/devdactic.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.1.13"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55358,56760,9792,65039],[55358,56760,8203,9792,65039])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='crayon-theme-github-css'  href='https://devdactic.com/wp-content/plugins/crayon-syntax-highlighter/themes/github/github.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-monaco-css'  href='https://devdactic.com/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<link rel='stylesheet' id='smart-passive-income-pro-css'  href='https://devdactic.com/wp-content/themes/smart-passive-income-pro/style.css?ver=1.0.0' type='text/css' media='all' />
+<style id='smart-passive-income-pro-inline-css' type='text/css'>
+
+
+		a,
+		.spi-customized .entry-title a:focus,
+		.spi-customized .entry-title a:hover,
+		.spi-customized.js .menu-toggle:focus {
+			color: #ffbf00;
+		}
+
+		.spi-customized button,
+		.spi-customized input[type="button"],
+		.spi-customized input[type="reset"],
+		.spi-customized input[type="submit"],
+		.spi-customized .archive-pagination .active a,
+		.spi-customized .archive-pagination a:focus,
+		.spi-customized .archive-pagination a:hover,
+		.spi-customized.archive .content .entry-comments-link,
+		.spi-customized.single .content .entry-comments-link,
+		.spi-customized .site-container a.button,
+		.spi-customized .color .more-link {
+			background-color: #ffbf00;
+		}
+
+		.spi-customized.archive .content .entry-comments-link:after,
+		.spi-customized.single .content .entry-comments-link:after {
+			border-left-color: #ffbf00;
+		}
+
+		.spi-customized button,
+		.spi-customized input[type="button"],
+		.spi-customized input[type="reset"],
+		.spi-customized input[type="submit"],
+		.spi-customized.archive .content p.entry-meta .entry-comments-link > a,
+		.spi-customized.single .content p.entry-meta .entry-comments-link > a,
+		.spi-customized .site-container a.button,
+		.spi-customized .color .more-link {
+			color: #333333;
+		}
+		
+		
+		.spi-customized button:focus,
+		.spi-customized button:hover,
+		.spi-customized input:focus[type="button"],
+		.spi-customized input:focus[type="reset"],
+		.spi-customized input:focus[type="submit"],
+		.spi-customized input:hover[type="button"],
+		.spi-customized input:hover[type="reset"],
+		.spi-customized input:hover[type="submit"],
+		.spi-customized .site-container a.button:focus,
+		.spi-customized .site-container a.button:hover,
+		.spi-customized .color .more-link:focus,
+		.spi-customized .color .more-link:hover {
+			background-color: #ffd314;
+			color: #333333;
+		}
+
+		.spi-customized .menu-toggle:focus,
+		.spi-customized .menu-toggle:hover {
+			color: #ffd314;
+		}
+		
+
+		.spi-customized .after-entry .widget-title,
+		.spi-customized .footer-banner,
+		.spi-customized .front-page-1,
+		.spi-customized .genesis-nav-menu .sub-menu,
+		.spi-customized .nav-primary .genesis-nav-menu > li.current-menu-item:before,
+		.spi-customized .nav-primary .genesis-nav-menu > li:hover:before,
+		.spi-customized .nav-primary .genesis-nav-menu li.current-menu-item a,
+		.spi-customized .nav-primary,
+		.spi-customized .sidebar .enews-widget .widget-title,
+		.spi-customized .site-container button.sub-menu-toggle.sub-menu-toggle:focus,
+		.spi-customized .site-container button.sub-menu-toggle.sub-menu-toggle:hover,
+		.spi-customized .site-container .nav-primary .genesis-nav-menu > li a:focus,
+		.spi-customized .site-container .nav-primary .genesis-nav-menu > li a:hover {
+			background-color: #4184e2;
+		}
+
+		.spi-customized .after-entry .widget-title,
+		.spi-customized .after-entry .widget-title a,
+		.spi-customized .after-entry .widget-title a:focus,
+		.spi-customized .after-entry .widget-title a:hover,
+		.spi-customized .color,
+		.spi-customized .color a,
+		.spi-customized .color p.entry-meta a,
+		.spi-customized .color p.entry-meta,
+		.spi-customized .color .entry-title a,
+		.spi-customized .color .menu a,
+		.spi-customized .color .menu li:after,
+		.spi-customized .color.widget-full .menu a,
+		.spi-customized .genesis-nav-menu .sub-menu a,
+		.spi-customized .genesis-nav-menu .sub-menu a:hover,
+		.spi-customized .nav-primary .genesis-nav-menu a,
+		.spi-customized .nav-primary .genesis-nav-menu > li.current-menu-item:before,
+		.spi-customized .nav-primary .genesis-nav-menu > li:hover:before,
+		.spi-customized .sidebar .enews-widget .widget-title,
+		.spi-customized .site-container button.sub-menu-toggle,
+		.spi-customized .site-container .nav-primary .genesis-nav-menu > li a:focus,
+		.spi-customized .site-container .nav-primary .genesis-nav-menu > li a:hover {
+			color: #ffffff;
+		}
+
+		.spi-customized .genesis-nav-menu .sub-menu a {
+			border-color: #2d70ce;
+		}
+
+		
+		
+		.spi-customized .site-container .nav-primary .genesis-nav-menu > li .sub-menu a:hover {
+			background-color: #2d70ce;
+			color: #ffffff;
+		}
+		
+		.spi-customized .front-page-2 {
+			background-image: url( //devdactic.com/wp-content/uploads/2018/03/code-header.png );
+		}
+		
+</style>
+<link rel='stylesheet' id='wp-block-library-css'  href='https://devdactic.com/wp-includes/css/dist/block-library/style.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-block-style-css'  href='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/block/dist/blocks.style.build.css?ver=1608971221' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-components-css'  href='https://devdactic.com/wp-includes/css/dist/components/style.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-editor-font-css'  href='https://fonts.googleapis.com/css?family=Noto+Serif%3A400%2C400i%2C700%2C700i&#038;ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-nux-css'  href='https://devdactic.com/wp-includes/css/dist/nux/style.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-editor-css'  href='https://devdactic.com/wp-includes/css/dist/editor/style.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='gumroad_block-cgb-style-css-css'  href='https://devdactic.com/wp-content/plugins/gumroad/dist/blocks.style.build.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='tm_clicktotweet-css'  href='https://devdactic.com/wp-content/plugins/click-to-tweet-by-todaymade/assets/css/styles.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='https://devdactic.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=5.1.6' type='text/css' media='all' />
+<link rel='stylesheet' id='cookie-notice-front-css'  href='https://devdactic.com/wp-content/plugins/cookie-notice/css/front.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='exactmetrics-popular-posts-style-css'  href='https://devdactic.com/wp-content/plugins/google-analytics-dashboard-for-wp/assets/css/frontend.min.css?ver=6.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='spi-fonts-css'  href='//fonts.googleapis.com/css?family=Roboto%3A300%2C400%2C400italic%2C700%2C900&#038;ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='https://devdactic.com/wp-includes/css/dashicons.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-socicon-css'  href='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/wpzoom-socicon.css?ver=1608971221' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-genericons-css'  href='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/genericons.css?ver=1608971221' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-academicons-css'  href='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/academicons.min.css?ver=1608971221' type='text/css' media='all' />
+<link rel='stylesheet' id='wpzoom-social-icons-font-awesome-3-css'  href='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/css/font-awesome-3.min.css?ver=1608971221' type='text/css' media='all' />
+<link rel='stylesheet' id='social_rocket-css'  href='https://devdactic.com/wp-content/plugins/social-rocket/css/style.css?ver=1.3.0' type='text/css' media='all' />
+<style id='social_rocket-inline-css' type='text/css'>
+
+				 .social-rocket-buttons {
+					display: block;
+				}
+				 .social-rocket-buttons .social-rocket-button,
+				 .social-rocket-buttons .social-rocket-button-anchor,
+				 .social-rocket-buttons .social-rocket-shares-total {
+					-webkit-box-flex: initial;
+					-ms-flex: initial;
+					flex: initial;
+				}
+			
+			 .social-rocket-buttons .social-rocket-shares-total {
+				color: #252525;
+			}
+			 .social-rocket-buttons {
+				text-align: left;
+			}
+			 .social-rocket-button {
+				border-style: solid;
+				border-width: 1px;
+				border-radius: 0px;
+			}
+			 .social-rocket-buttons .social-rocket-button,
+			 .social-rocket-buttons .social-rocket-button:last-child,
+			 .social-rocket-buttons .social-rocket-shares-total {
+				margin-bottom: 5px;
+				margin-right: 5px;
+			}
+		
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons .social-rocket-shares-total {
+				color: #252525;
+			}
+		
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons.social-rocket-position-top,
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons.social-rocket-position-bottom {
+				text-align: center;
+			}
+		
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons .social-rocket-floating-button {
+				border-style: none;
+				border-width: 0px;
+				border-radius: 0px;
+			}
+		
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons .social-rocket-floating-button,
+			.social-rocket-floating-buttons.social-rocket-desktop-only.social-rocket-floating-buttons .social-rocket-shares-total {
+				margin-bottom: 0px;
+			}
+			
+			.social-rocket-tweet {
+				background-color: #429cd6;
+				color: #ffffff;
+				font-size: 24px;
+				border-style: none;
+				border-width: 1px;
+				border-color: #dddddd;
+				border-radius: 0px;
+			}
+			.social-rocket-tweet a {
+				border-left: 10px solid #3c87b2;
+			}
+			.social-rocket-tweet-cta {
+				color: #ffffff;
+				text-align: right;
+			}
+		
+				@media screen and (max-width: 782px) {
+					.social-rocket-inline-buttons.social-rocket-desktop-only {
+						display: none !important;
+					}
+					.social-rocket-inline-buttons.social-rocket-mobile-only {
+						display: block;
+					}
+				}
+				@media screen and (min-width: 783px) {
+					.social-rocket-inline-buttons.social-rocket-mobile-only {
+						display: none !important;
+					}
+					.social-rocket-inline-buttons.social-rocket-desktop-only {
+						display: block;
+					}
+				}
+			
+				@media screen and (max-width: 782px) {
+					.social-rocket-floating-buttons.social-rocket-desktop-only {
+						display: none !important;
+					}
+					.social-rocket-floating-buttons.social-rocket-mobile-only {
+						display: block;
+					}
+				}
+				@media screen and (min-width: 783px) {
+					.social-rocket-floating-buttons.social-rocket-mobile-only {
+						display: none !important;
+					}
+					.social-rocket-floating-buttons.social-rocket-desktop-only {
+						display: block;
+					}
+				}
+			
+</style>
+<link rel='stylesheet' id='fontawesome_core-css'  href='https://devdactic.com/wp-content/plugins/social-rocket/css/fontawesome.min.css?ver=1.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome_brands-css'  href='https://devdactic.com/wp-content/plugins/social-rocket/css/fa-brands.min.css?ver=1.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome_regular-css'  href='https://devdactic.com/wp-content/plugins/social-rocket/css/fa-regular.min.css?ver=1.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='fontawesome_solid-css'  href='https://devdactic.com/wp-content/plugins/social-rocket/css/fa-solid.min.css?ver=1.3.0' type='text/css' media='all' />
+<link rel='stylesheet' id='cp-perfect-scroll-style-css'  href='https://devdactic.com/wp-content/plugins/convertplug/modules/slide_in/../../admin/assets/css/perfect-scrollbar.min.css?ver=5.1.13' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='https://devdactic.com/wp-content/plugins/jetpack/css/jetpack.css?ver=7.2.3' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var slide_in = {"demo_dir":"https:\/\/devdactic.com\/wp-content\/plugins\/convertplug\/modules\/slide_in\/assets\/demos"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var exactmetrics_frontend = {"js_events_tracking":"true","download_extensions":"zip,mp3,mpeg,pdf,docx,pptx,xlsx,rar","inbound_paths":"[{\"path\":\"\\\/go\\\/\",\"label\":\"affiliate\"},{\"path\":\"\\\/recommend\\\/\",\"label\":\"affiliate\"}]","home_url":"https:\/\/devdactic.com","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/google-analytics-dashboard-for-wp/assets/js/frontend.min.js?ver=6.4.0'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/convertkit/resources/frontend/jquery.cookie.min.js?ver=1.4.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ck_data = {"ajaxurl":"https:\/\/devdactic.com\/wp-admin\/admin-ajax.php","post_has_tag":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/convertkit/resources/frontend/wp-convertkit.js?ver=1.9.4'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/sticky-menu-or-anything-on-scroll/assets/js/jq-sticky-anything.min.js?ver=2.1.1'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/themes/genesis/lib/js/skip-links.js?ver=5.1.13'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://devdactic.com/wp-content/themes/genesis/lib/js/html5shiv.min.js?ver=3.7.3'></script>
+<![endif]-->
+<link rel='https://api.w.org/' href='https://devdactic.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://devdactic.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://devdactic.com/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.1.13" />
+<link rel='shortlink' href='https://wp.me/p5zKAo-ky4' />
+<link rel="alternate" type="application/json+oembed" href="https://devdactic.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://devdactic.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F&#038;format=xml" />
+<script type="text/javascript">!function(e,t){(e=t.createElement("script")).src="https://cdn.convertbox.com/convertbox/js/embed.js",e.id="app-convertbox-script",e.async=true,e.dataset.uuid="9d2de8b2-76cf-4607-8ed6-ed260261845d",document.getElementsByTagName("head")[0].appendChild(e)}(window,document);</script>
+<script>var cb_wp=cb_wp || {};cb_wp.is_user_logged_in=false;cb_wp.post_data={"id":78992,"tags":[189],"post_type":"post","cats":[186]};</script><script>
+
+var gaProperty = 'UA-54634512-1';
+var disableStr = 'ga-disable-' + gaProperty;
+if (document.cookie.indexOf(disableStr + '=true') > -1) {
+  window[disableStr] = true;
+}
+function gaOptout() {
+  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+  window[disableStr] = true;
+}
+
+</script>
+
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"This website uses cookies to ensure you get the best experience on our website","dismiss":"Got it!","learnMore":"More info","link":"http://devdactic.com/privacy-policy/","theme":"dark-bottom"};
+</script>
+
+<script type="text/javascript" src="//s3.amazonaws.com/cc.silktide.com/cookieconsent.latest.min.js"></script>
+<!-- End Cookie Consent plugin -->
+
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '618910268300431'); // Insert your pixel ID here.
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=618910268300431&ev=PageView&noscript=1"
+/></noscript>
+<!-- DO NOT MODIFY -->
+<!-- End Facebook Pixel Code -->
+
+<script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c422eccc9830d001319a883&product=inline-share-buttons' async='async'></script><style type="text/css" id="tve_global_variables">:root{}</style>
+<link rel='dns-prefetch' href='//v0.wordpress.com'/>
+<link rel='dns-prefetch' href='//i0.wp.com'/>
+<link rel='dns-prefetch' href='//i1.wp.com'/>
+<link rel='dns-prefetch' href='//i2.wp.com'/>
+<style type='text/css'>img#wpstats{display:none}</style><style type="text/css">.site-title a { background: url(https://devdactic.com/wp-content/uploads/2015/12/devdactic-logo-dark-bg.png) no-repeat !important; }</style>
+<style type="text/css" id="thrive-default-styles"></style><link rel="icon" href="https://i1.wp.com/devdactic.com/wp-content/uploads/2015/12/cropped-devdactic-logo-dark-bg.png?fit=32%2C32&#038;ssl=1" sizes="32x32" />
+<link rel="icon" href="https://i1.wp.com/devdactic.com/wp-content/uploads/2015/12/cropped-devdactic-logo-dark-bg.png?fit=192%2C192&#038;ssl=1" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://i1.wp.com/devdactic.com/wp-content/uploads/2015/12/cropped-devdactic-logo-dark-bg.png?fit=180%2C180&#038;ssl=1" />
+<meta name="msapplication-TileImage" content="https://i1.wp.com/devdactic.com/wp-content/uploads/2015/12/cropped-devdactic-logo-dark-bg.png?fit=270%2C270&#038;ssl=1" />
+			<style type="text/css" id="wp-custom-css">
+				/*
+Welcome to Custom CSS!
+
+To learn how this works, see http://wp.me/PEmnE-Bt
+*/
+
+.archive-description {
+	display: none;
+}
+
+.teaser .entry-title {
+	    font-size: 2.8rem;
+    margin: 0 0 10px;
+}
+
+.teaser .entry-comments-link {
+	display: none;
+}
+
+.teaser .entry-title {
+	    font-size: 3rem;
+    margin: 0 0 10px;
+}
+
+.teaser .content {
+	    padding: 0 25px 80px;
+}
+
+
+.teaser .entry-meta {
+	    display: none;
+}
+
+.teaser .entry-header {
+	margin-bottom: 10px;
+}
+
+.teaser .entry {
+	margin-bottom: 20px;
+}
+.crayon-syntax {
+	    z-index: 0;
+}
+
+.home-academy-list 
+li {
+	margin-bottom: 0px !important;
+	padding-bottom: 0px !important;
+	margin-left: 30px
+}
+
+.grid-items > div {
+		border: 1px solid #FFF;
+}
+
+.formkit-form {
+	text-align: center;
+  margin: auto;
+}			</style>
+		</head>
+<body class="post-template-default single single-post postid-78992 single-format-standard cookies-not-set custom-header header-image content-sidebar secondary-nav spi-customized" itemscope itemtype="http://schema.org/WebPage"><div class="site-container"><section><h2 class="screen-reader-text">Skip links</h2><ul class="genesis-skip-link"><li><a href="#genesis-nav-primary" class="screen-reader-shortcut"> Skip to primary navigation</a></li><li><a href="#genesis-content" class="screen-reader-shortcut"> Skip to content</a></li><li><a href="#genesis-sidebar-primary" class="screen-reader-shortcut"> Skip to primary sidebar</a></li></ul></section>
+<header class="site-header" itemscope itemtype="http://schema.org/WPHeader"><div class="wrap"><div class="title-area"><p class="site-title" itemprop="headline"><a href="https://devdactic.com/">Devdactic - Ionic Tutorials</a></p><p class="site-description" itemprop="description">Ionic Tutorials - Build Cross Platform Apps</p></div><div class="widget-area header-widget-area"><h2 class="genesis-sidebar-title screen-reader-text">Header Right</h2><section id="text-28" class="widget widget_text"><div class="widget-wrap"><h3 class="widgettitle widget-title">Want to get started with Ionic?</h3>
+			<div class="textwidget"><div style="display: flex; flex-direction: row-reverse; align-items: center;     align-items: end;
+    gap: 10px;">
+<a href="https://ionicacademy.com/ionic-crash-course/" class="button" target="blank" style="    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 5px;">
+<img src="https://i0.wp.com/devdactic.com/wp-content/uploads/2022/01/ionic-logo-dark-new.png?resize=20%2C20&#038;ssl=1" width="20 px" height="20 px" data-recalc-dims="1">
+Ionic Crash Course</a>
+<a href="https://ionicacademy.com/capacitor-crash-course/" class="button" target="blank" style="background-color: #4184e2; color: #fff;     justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 5px;">
+<img src="https://i2.wp.com/devdactic.com/wp-content/uploads/2022/01/capacitor-logo.png?resize=20%2C20&#038;ssl=1" width="20 px" height="20 px" data-recalc-dims="1">Capacitor Crash Course</a></div></div>
+		</div></section>
+</div></div></header><h2 class="screen-reader-text">Main navigation</h2><nav class="nav-primary" itemscope itemtype="http://schema.org/SiteNavigationElement" id="genesis-nav-primary" aria-label="Main navigation"><div class="wrap"><ul id="menu-mainnav" class="menu genesis-nav-menu menu-primary js-superfish"><li id="menu-item-4395" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4395"><a href="https://devdactic.com/start-devdactic/" itemprop="url"><span itemprop="name">Start Here</span></a></li>
+<li id="menu-item-3502" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3502"><a target="_blank" href="https://ionicacademy.com/" itemprop="url"><span itemprop="name">Ionic Academy</span></a></li>
+<li id="menu-item-1646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1646"><a href="https://devdactic.com/devblog/" itemprop="url"><span itemprop="name">Blog</span></a></li>
+<li id="menu-item-4336" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4336"><a href="https://devdactic.com/category/ionic" itemprop="url"><span itemprop="name">Ionic Tutorials</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-4337" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4337"><a href="https://devdactic.com/tag/beginner/" itemprop="url"><span itemprop="name">Beginner Tutorials</span></a></li>
+	<li id="menu-item-4338" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4338"><a href="https://devdactic.com/tag/intermediate/" itemprop="url"><span itemprop="name">Intermediate Tutorials</span></a></li>
+	<li id="menu-item-4335" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4335"><a href="https://devdactic.com/tag/advanced/" itemprop="url"><span itemprop="name">Advanced Tutorials</span></a></li>
+	<li id="menu-item-78717" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-78717"><a href="https://devdactic.com/category/built-with-ionic/" itemprop="url"><span itemprop="name">Built With Ionic</span></a></li>
+</ul>
+</li>
+<li id="menu-item-79062" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-79062"><a href="#" itemprop="url"><span itemprop="name">Books</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-79063" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79063"><a target="_blank" href="https://builtwithionic.com" itemprop="url"><span itemprop="name">Built with Ionic</span></a></li>
+	<li id="menu-item-78309" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-78309"><a href="https://devdactic.com/practical-ionic/" itemprop="url"><span itemprop="name">Practical Ionic</span></a></li>
+</ul>
+</li>
+<li id="menu-item-2721" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2721"><a href="https://devdactic.com/about/" itemprop="url"><span itemprop="name">About</span></a></li>
+<li id="menu-item-79064" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-79064"><a target="_blank" href="https://kickoffionic.com/" itemprop="url"><span itemprop="name">Bootstrap Ionic</span></a></li>
+</ul></div></nav><div class="site-inner"><div class="content-sidebar-wrap"><main class="content" id="genesis-content"><article class="post-78992 post type-post status-publish format-standard has-post-thumbnail category-ionic tag-beginner entry" itemscope itemtype="http://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Build Your First Ionic App with Firebase using AngularFire 7</h1> 
+<p class="entry-meta"><time class="entry-time" itemprop="datePublished" datetime="2021-11-02T17:00:33+02:00">November 2, 2021</time> By <span class="entry-author" itemprop="author" itemscope itemtype="http://schema.org/Person"><a href="https://devdactic.com/author/simon-reimler/" class="entry-author-link" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">Simon</span></a></span> <span class="entry-comments-link"><a href="https://devdactic.com/ionic-firebase-angularfire-7/#respond"><span class="dsq-postid" data-dsqidentifier="78992 https://devdactic.com/?p=78992">Leave a Comment</span></a></span> </p></header><div class="entry-content" itemprop="text"><img width="720" height="400" src="https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?resize=720%2C400&amp;ssl=1" class="alignleft post-image entry-image" alt="Build Your First Ionic App with Firebase using AngularFire 7" itemprop="image" srcset="https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?w=1620&amp;ssl=1 1620w, https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?resize=300%2C167&amp;ssl=1 300w, https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?resize=768%2C427&amp;ssl=1 768w, https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?resize=1024%2C569&amp;ssl=1 1024w, https://i0.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire-7.png?resize=720%2C400&amp;ssl=1 720w" sizes="(max-width: 720px) 100vw, 720px" /><p>Using Firebase as the backend for your Ionic apps is a great choice if you want to build a robust system with live data fast, and by using AngularFire you can use a simple wrapper around the official Firebase JS SDK.<br />
+<span id="more-78992"></span></p>
+<p>In this tutorial we will use the currently latest version 7 of <a href="https://github.com/angular/angularfire" rel="noopener noreferrer" target="_blank">AngularFire</a> which uses the Firebase JS SDK version 9.</p>
+<p>We will build a simple note taking app and include all essential Firebase CRUD functions!</p>
+<p><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2021/11/ionic-firebase-angularfire.gif?resize=423%2C823&#038;ssl=1" alt="ionic-firebase-angularfire" width="423" height="823" class="aligncenter size-full wp-image-78998" data-recalc-dims="1" /></p>
+<p>User authentication, file upload, security rules and more topics are covered <a href="https://ionicacademy.com/" rel="noopener noreferrer" target="_blank">in the courses of the Ionic Academy</a>!</p>
+<h2>Creating the Firebase Project</h2>
+<p>Before we dive into the Ionic app, we need to make sure we actually have a Firebase app configured. If you already got something in place you can of course skip this step.</p>
+<p>Otherwise, make sure you are signed up (it’s free) and then hit <strong>Add project</strong> inside the <a href="https://console.firebase.google.com/" rel="noopener noreferrer" target="_blank">Firebase console</a>. Give your new app a name, select a region and then create your project!</p>
+<p>Once you have created the project you need to find the web configuration which looks like this:</p>
+<p><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firebase-add-to-app.png?resize=1024%2C892&#038;ssl=1" alt="ionic-4-firebase-add-to-app" width="1024" height="892" class="aligncenter size-large wp-image-4807" srcset="https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firebase-add-to-app.png?resize=1024%2C892&amp;ssl=1 1024w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firebase-add-to-app.png?resize=300%2C261&amp;ssl=1 300w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firebase-add-to-app.png?resize=768%2C669&amp;ssl=1 768w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firebase-add-to-app.png?w=2000&amp;ssl=1 2000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" /></p>
+<p>If it’s a new project, click on the web icon below &#8220;Get started by adding Firebase to your app&#8221; to start a new web app and give it a name, you will see the configuration in the next step now.</p>
+<p>Leave this config block open (<em>or copy it already</em>) until our app is ready so we can insert it in our environment!</p>
+<p>Additionally we have to enable the database, so select <b>Firestore Database</b> from the menu and click <b>Create database</b>.</p>
+<p><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firestore.png?resize=1024%2C877&#038;ssl=1" alt="ionic-4-firestore" width="1024" height="877" class="aligncenter size-large wp-image-4808" srcset="https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firestore.png?resize=1024%2C877&amp;ssl=1 1024w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firestore.png?resize=300%2C257&amp;ssl=1 300w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firestore.png?resize=768%2C658&amp;ssl=1 768w, https://i1.wp.com/devdactic.com/wp-content/uploads/2019/02/ionic-4-firestore.png?w=2000&amp;ssl=1 2000w" sizes="(max-width: 1000px) 100vw, 1000px" data-recalc-dims="1" /></p>
+<p>Here we can set the default <strong>security rules</strong> for our database and because this is a simple tutorial we’ll roll with the <strong>test mode</strong> which allows everyone access.</p>
+<h2>Starting our Ionic App &#038; Firebase Integration</h2>
+<p>Now we are ready to setup the Ionic app, so generate a new app with an additional page and service for our logic and then use the AngularFire schematic to add all required packages and changes to the project:</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div class="9235de6ebd21b579298e42971aa533a9" data-index="2" style="float: none; margin:10px 0 10px 0; text-align:center;">
+<a href="https://ionicacademy.com/?utm_source=devtut&utm_medium=ad2" target="blank"><img src="https://i0.wp.com/devdactic.com/wp-content/uploads/2018/03/facebook_ad_1v1.png?ssl=1" data-recalc-dims="1"></a>
+</div>
+
+<p></p>
+		<div id="crayon-62882052c255e917355958" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c255e917355958-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c255e917355958-2">2</div><div class="crayon-num" data-line="crayon-62882052c255e917355958-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c255e917355958-4">4</div><div class="crayon-num" data-line="crayon-62882052c255e917355958-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c255e917355958-6">6</div><div class="crayon-num" data-line="crayon-62882052c255e917355958-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c255e917355958-8">8</div><div class="crayon-num" data-line="crayon-62882052c255e917355958-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c255e917355958-1"><span class="crayon-e">ionic </span><span class="crayon-e">start </span><span class="crayon-e">devdacticFire </span><span class="crayon-v">blank</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-v">type</span><span class="crayon-o">=</span><span class="crayon-v">angular</span><span class="crayon-h"> </span><span class="crayon-o">--</span><span class="crayon-e">capacitor</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c255e917355958-2"><span class="crayon-i">cd</span><span class="crayon-h"> </span><span class="crayon-sy">.</span><span class="crayon-o">/</span><span class="crayon-v">devdacticFire</span></div><div class="crayon-line" id="crayon-62882052c255e917355958-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c255e917355958-4"><span class="crayon-p"># Generate a page and service</span></div><div class="crayon-line" id="crayon-62882052c255e917355958-5"><span class="crayon-i">ionic</span><span class="crayon-h"> </span><span class="crayon-i">g</span><span class="crayon-h"> </span><span class="crayon-e">page </span><span class="crayon-e">modal</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c255e917355958-6"><span class="crayon-i">ionic</span><span class="crayon-h"> </span><span class="crayon-i">g</span><span class="crayon-h"> </span><span class="crayon-e">service </span><span class="crayon-v">services</span><span class="crayon-o">/</span><span class="crayon-v">data</span></div><div class="crayon-line" id="crayon-62882052c255e917355958-7">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c255e917355958-8"><span class="crayon-p"># Install Firebase and AngularFire</span></div><div class="crayon-line" id="crayon-62882052c255e917355958-9"><span class="crayon-e">ng </span><span class="crayon-i">add</span><span class="crayon-h"> </span><span class="crayon-sy">@</span><span class="crayon-v">angular</span><span class="crayon-o">/</span><span class="crayon-v">fire</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p>Now we need the <strong>configuration from Firebase</strong> that you hopefully kept open in your browser, and we can add it right inside our <b>environments/environment.ts</b> like this:</p>
+		<div id="crayon-62882052c2567387454390" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2567387454390-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2567387454390-2">2</div><div class="crayon-num" data-line="crayon-62882052c2567387454390-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2567387454390-4">4</div><div class="crayon-num" data-line="crayon-62882052c2567387454390-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2567387454390-6">6</div><div class="crayon-num" data-line="crayon-62882052c2567387454390-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2567387454390-8">8</div><div class="crayon-num" data-line="crayon-62882052c2567387454390-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2567387454390-10">10</div><div class="crayon-num" data-line="crayon-62882052c2567387454390-11">11</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2567387454390-1"><span class="crayon-e">export </span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">environment</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2567387454390-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">production</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-t">false</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2567387454390-3"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">firebase</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2567387454390-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">apiKey</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2567387454390-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">authDomain</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2567387454390-6"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">projectId</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2567387454390-7"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">storageBucket</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2567387454390-8"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">messagingSenderId</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2567387454390-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">appId</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">""</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2567387454390-10"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2567387454390-11"><span class="crayon-sy">}</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p>Finally we set up the connection to Firebase by passing in our configuration. This looks different from previous versions as we are now using <b>factory functions</b> to setup all services that we need, like in our example the <code>getFirestore()</code>.</p>
+<p>Go ahead and change the <b>src/app/app.module.ts</b> to:</p>
+<p></p>
+		<div id="crayon-62882052c2569603282847" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2569603282847-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-2">2</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-4">4</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-6">6</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-8">8</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-9">9</div><div class="crayon-num crayon-marked-num crayon-top crayon-striped-num" data-line="crayon-62882052c2569603282847-10">10</div><div class="crayon-num crayon-marked-num" data-line="crayon-62882052c2569603282847-11">11</div><div class="crayon-num crayon-marked-num crayon-bottom crayon-striped-num" data-line="crayon-62882052c2569603282847-12">12</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-14">14</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-16">16</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-17">17</div><div class="crayon-num crayon-marked-num crayon-top crayon-striped-num" data-line="crayon-62882052c2569603282847-18">18</div><div class="crayon-num crayon-marked-num crayon-bottom" data-line="crayon-62882052c2569603282847-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-20">20</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-22">22</div><div class="crayon-num" data-line="crayon-62882052c2569603282847-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2569603282847-24">24</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2569603282847-1"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">NgModule</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/core'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-2"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">BrowserModule</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/platform-browser'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-3"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">RouteReuseStrategy</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/router'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-4">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2569603282847-5"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">IonicModule</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">IonicRouteStrategy</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@ionic/angular'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-6">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2569603282847-7"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">AppComponent</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'./app.component'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-8"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">AppRoutingModule</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'./app-routing.module'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-9">&nbsp;</div><div class="crayon-line crayon-marked-line crayon-top crayon-striped-line" id="crayon-62882052c2569603282847-10"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">environment</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'../environments/environment'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-marked-line" id="crayon-62882052c2569603282847-11"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">provideFirebaseApp</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">initializeApp</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/fire/app'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-marked-line crayon-bottom crayon-striped-line" id="crayon-62882052c2569603282847-12"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">getFirestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">provideFirestore</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/fire/firestore'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-14"><span class="crayon-sy">@</span><span class="crayon-e">NgModule</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-15"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">declarations</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">AppComponent</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-16"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">entryComponents</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-17"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">imports</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">BrowserModule</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">IonicModule</span><span class="crayon-sy">.</span><span class="crayon-e">forRoot</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">AppRoutingModule</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-striped-line" id="crayon-62882052c2569603282847-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">provideFirebaseApp</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-e">initializeApp</span><span class="crayon-sy">(</span><span class="crayon-v">environment</span><span class="crayon-sy">.</span><span class="crayon-v">firebase</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-marked-line crayon-bottom" id="crayon-62882052c2569603282847-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">provideFirestore</span><span class="crayon-sy">(</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-e">getFirestore</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-20"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-21"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">providers</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">provide</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">RouteReuseStrategy</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">useClass</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-i">IonicRouteStrategy</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-22"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">bootstrap</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-v">AppComponent</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2569603282847-23"><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2569603282847-24"><span class="crayon-e">export</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">AppModule</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p></p>
+<p>Injecting more services like authentication or file storage basically follow the same setup!</p>
+<h2>Working with Firestore Docs &#038; Collections</h2>
+<p>As a first step we will create a service that interacts with Firebase and loads our data. It&#8217;s always a good idea to outsource your logic into a service!</p>
+<p>To work with Firestore in the latest version we need to inject the <b>Firestore</b> instance into every call, so we import it within our constructor and later use it in our CRUD functions. On top of that we simply create a <b>reference</b> to the path in our Firestore database to either a <b>collection</b> or <b>document</b>.</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div class="9235de6ebd21b579298e42971aa533a9" data-index="1" style="float: none; margin:10px 0 10px 0; text-align:center;">
+<a href="https://ionicacademy.com/?utm_source=devtut&utm_medium=ad9" target="blank"><img src="https://i0.wp.com/devdactic.com/wp-content/uploads/2020/01/join-academy-2020.png?ssl=1" data-recalc-dims="1"></a>
+</div>
+
+<p>Let&#8217;s go through each of them:</p>
+<ul>
+<li><code>getNotes</code>: Access the <b>notes</b> collection and query the data using <code>collectionData()</code></li>
+<li><code>getNoteById</code>: Access one document in the notes collection and return the data with <code>docData()</code></li>
+<li><code>addNote</code>: With a reference to the notes collection we use <code>addDoc()</code> to simply push a new document to a collection where a unique ID is generated for it</li>
+<li><code>deleteNote</code>: Delete a document at a specific path using <code>deleteDoc()</code></li>
+<li><code>updateNote</code>: Create a reference to one document and update it through <code>updateDoc()</code></li>
+</ul>
+<p>For our first functions we also pass in an options object that contains <code>idField</code>, which helps to easily include the ID of a document in the response!</p>
+<p>Now let&#8217;s go ahead and change the <b>src/app/services/data.service.ts</b> to:</p>
+<p></p>
+		<div id="crayon-62882052c256c745541094" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c256c745541094-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-2">2</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-4">4</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c256c745541094-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-6">6</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-8">8</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-10">10</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-12">12</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-14">14</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-15">15</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c256c745541094-16">16</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-18">18</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-20">20</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-22">22</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-24">24</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-26">26</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-28">28</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-30">30</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-32">32</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-34">34</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-36">36</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-37">37</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-38">38</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-39">39</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-40">40</div><div class="crayon-num" data-line="crayon-62882052c256c745541094-41">41</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c256c745541094-42">42</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c256c745541094-1"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">Injectable</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/core'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-2"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">collection</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">collectionData</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">doc</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">docData</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">addDoc</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">deleteDoc</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">updateDoc</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/fire/firestore'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-3"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">Observable</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'rxjs'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-4">&nbsp;</div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c256c745541094-5"><span class="crayon-e">export</span><span class="crayon-h"> </span><span class="crayon-t">interface</span><span class="crayon-h"> </span><span class="crayon-e">Note</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">id</span><span class="crayon-sy">?</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">title</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">text</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-9"><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-10">&nbsp;</div><div class="crayon-line" id="crayon-62882052c256c745541094-11"><span class="crayon-sy">@</span><span class="crayon-e">Injectable</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-12"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">providedIn</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'root'</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-13"><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-14"><span class="crayon-e">export</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">DataService</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-15">&nbsp;</div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c256c745541094-16"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">constructor</span><span class="crayon-sy">(</span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">firestore</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Firestore</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-17">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-18"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">getNotes</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-e">Observable</span><span class="crayon-o">&lt;</span><span class="crayon-e">Note</span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">notesRef</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">collection</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'notes'</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-e">collectionData</span><span class="crayon-sy">(</span><span class="crayon-v">notesRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">idField</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'id'</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-v">Observable</span><span class="crayon-o">&lt;</span><span class="crayon-v">Note</span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-o">&gt;</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-21"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-22">&nbsp;</div><div class="crayon-line" id="crayon-62882052c256c745541094-23"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">getNoteById</span><span class="crayon-sy">(</span><span class="crayon-v">id</span><span class="crayon-sy">)</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-e">Observable</span><span class="crayon-o">&lt;</span><span class="crayon-e">Note</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">noteDocRef</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">doc</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-e">notes</span><span class="crayon-o">/</span><span class="crayon-sy">$</span><span class="crayon-sy">{</span><span class="crayon-v">id</span><span class="crayon-sy">}</span><span class="crayon-sy">`</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-e">docData</span><span class="crayon-sy">(</span><span class="crayon-v">noteDocRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">idField</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'id'</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-st">as</span><span class="crayon-h"> </span><span class="crayon-v">Observable</span><span class="crayon-o">&lt;</span><span class="crayon-v">Note</span><span class="crayon-o">&gt;</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-26"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-27">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-28"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">addNote</span><span class="crayon-sy">(</span><span class="crayon-v">note</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">notesRef</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">collection</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">'notes'</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-e">addDoc</span><span class="crayon-sy">(</span><span class="crayon-v">notesRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">note</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-31"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-32">&nbsp;</div><div class="crayon-line" id="crayon-62882052c256c745541094-33"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">deleteNote</span><span class="crayon-sy">(</span><span class="crayon-v">note</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-34"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">noteDocRef</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">doc</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-e">notes</span><span class="crayon-o">/</span><span class="crayon-sy">$</span><span class="crayon-sy">{</span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-v">id</span><span class="crayon-sy">}</span><span class="crayon-sy">`</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-35"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-e">deleteDoc</span><span class="crayon-sy">(</span><span class="crayon-v">noteDocRef</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-36"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-37">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-38"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">updateNote</span><span class="crayon-sy">(</span><span class="crayon-v">note</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-39"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">noteDocRef</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">doc</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">firestore</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">`</span><span class="crayon-e">notes</span><span class="crayon-o">/</span><span class="crayon-sy">$</span><span class="crayon-sy">{</span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-v">id</span><span class="crayon-sy">}</span><span class="crayon-sy">`</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-40"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-e">updateDoc</span><span class="crayon-sy">(</span><span class="crayon-v">noteDocRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">title</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-v">title</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">text</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-i">text</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c256c745541094-41"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c256c745541094-42"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p>With all of that in place we are ready to build some functionality on top of our service.</p>
+<h2>Load and add to Firestore Collections</h2>
+<p>First of all we want to display a list with the collection data, so let&#8217;s create a quick template first. We add a click event to every item, and additionally use a FAB button to create new notes for our collection.</p>
+<p>Get started by changing the <b>src/app/home/home.page.html</b> to:</p>
+<p></p>
+		<div id="crayon-62882052c2570866778639" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2570866778639-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-2">2</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-4">4</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-6">6</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-8">8</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-10">10</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-11">11</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2570866778639-12">12</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-13">13</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2570866778639-14">14</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-16">16</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-18">18</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-19">19</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2570866778639-20">20</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-22">22</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2570866778639-24">24</div><div class="crayon-num" data-line="crayon-62882052c2570866778639-25">25</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2570866778639-1"><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">header</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">toolbar </span><span class="crayon-v">color</span><span class="crayon-o">=</span><span class="crayon-s">"primary"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">title</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-4"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">Devdactic </span><span class="crayon-v">Notes</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-5"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">title</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">toolbar</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-7"><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">header</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-8">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2570866778639-9"><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">content</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-10">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2570866778639-11"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">list</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2570866778639-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e ">item *</span><span class="crayon-v">ngFor</span><span class="crayon-o">=</span><span class="crayon-s">"let note of notes"</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">click</span><span class="crayon-sy">)</span><span class="crayon-o">=</span><span class="crayon-s">"openNote(note)"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-e">ion</span><span class="crayon-o">-</span><span class="crayon-e">label</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2570866778639-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-i">title</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">label</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">item</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-17"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">list</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-18">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2570866778639-19"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">fab </span><span class="crayon-v">vertical</span><span class="crayon-o">=</span><span class="crayon-s">"bottom"</span><span class="crayon-h"> </span><span class="crayon-v">horizontal</span><span class="crayon-o">=</span><span class="crayon-s">"end"</span><span class="crayon-h"> </span><span class="crayon-v">slot</span><span class="crayon-o">=</span><span class="crayon-s">"fixed"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2570866778639-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">fab</span><span class="crayon-o">-</span><span class="crayon-e">button</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">click</span><span class="crayon-sy">)</span><span class="crayon-o">=</span><span class="crayon-s">"addNote()"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">icon </span><span class="crayon-v">name</span><span class="crayon-o">=</span><span class="crayon-s">"add"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">icon</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">fab</span><span class="crayon-o">-</span><span class="crayon-v">button</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-23"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">fab</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2570866778639-24"><span class="crayon-h">&nbsp;&nbsp;</span></div><div class="crayon-line" id="crayon-62882052c2570866778639-25"><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">content</span><span class="crayon-o">&gt;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p>Since we have created the logic to load the data before, we now simply load the data from our service and assign it to our local <code>notes</code> array.</p>
+<p>To add a new note we can use the <a href="https://ionicframework.com/docs/api/alert" rel="noopener noreferrer" target="_blank">Ionic alert controller</a> and two simple inputs to capture a title and text for a new note.</p>
+<p>With that information we can call <code>addNote()</code> from our service to create a new note in our Firestore collection.</p>
+<p>We don&#8217;t need any additional logic to reload the collection data &#8211; since we are subscribed to an Observable that returns our collection data we will <strong>automatically receive the new data</strong>!</p>
+<p>To show the details for a note (<em>as a little exercise</em>) we create a new modal using the Ionic 6 sheet version with breakpoints which looks pretty cool. We pass in the ID of the note we want to open, so we can later load its data through our service.</p>
+<p>For now open the <b>src/app/home/home.page.ts</b> and change it to:</p>
+<p></p>
+		<div id="crayon-62882052c2573512181852" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2573512181852-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-2">2</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-4">4</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-6">6</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-8">8</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-10">10</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-12">12</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-14">14</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2573512181852-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-16">16</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2573512181852-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-18">18</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-20">20</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-22">22</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-24">24</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-25">25</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2573512181852-26">26</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-28">28</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-30">30</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2573512181852-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-32">32</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-34">34</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-36">36</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-37">37</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-38">38</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-39">39</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-40">40</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-41">41</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-42">42</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2573512181852-43">43</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-44">44</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-45">45</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-46">46</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-47">47</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-48">48</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-49">49</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-50">50</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-51">51</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-52">52</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-53">53</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-54">54</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2573512181852-55">55</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-56">56</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-57">57</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-58">58</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-59">59</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-60">60</div><div class="crayon-num" data-line="crayon-62882052c2573512181852-61">61</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2573512181852-62">62</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2573512181852-1"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">ChangeDetectorRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">Component</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/core'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-2"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">AlertController</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">ModalController</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@ionic/angular'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-3"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">DataService</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">Note</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'../services/data.service'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-4"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-i">ModalPage</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'../modal/modal.page'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-5">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-6"><span class="crayon-sy">@</span><span class="crayon-e">Component</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">selector</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'app-home'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">templateUrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'home.page.html'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-9"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">styleUrls</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'home.page.scss'</span><span class="crayon-sy">]</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-10"><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-11"><span class="crayon-e">export</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">HomePage</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-12"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">notes</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-14"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">constructor</span><span class="crayon-sy">(</span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">dataService</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">DataService</span><span class="crayon-sy">,</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">cd</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">ChangeDetectorRef</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">alertCtrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">AlertController</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">modalCtrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">ModalController</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2573512181852-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">dataService</span><span class="crayon-sy">.</span><span class="crayon-e">getNotes</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">subscribe</span><span class="crayon-sy">(</span><span class="crayon-v">res</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">notes</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">res</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2573512181852-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">cd</span><span class="crayon-sy">.</span><span class="crayon-e">detectChanges</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-19"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-20">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2573512181852-21"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">async </span><span class="crayon-e">addNote</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">alert</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">await </span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">alertCtrl</span><span class="crayon-sy">.</span><span class="crayon-e">create</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">header</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'Add Note'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">inputs</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2573512181852-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">name</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'title'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">placeholder</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'My cool note'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">type</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'text'</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2573512181852-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">name</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'text'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-32"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">placeholder</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'Learn Ionic'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">type</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'textarea'</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-34"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-35"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-36"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">buttons</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-37"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-38"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">text</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'Cancel'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-39"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">role</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'cancel'</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-40"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-41"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">text</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'Add'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-42"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">handler</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">res</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2573512181852-43"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">dataService</span><span class="crayon-sy">.</span><span class="crayon-e">addNote</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">text</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">res</span><span class="crayon-sy">.</span><span class="crayon-v">text</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">title</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">res</span><span class="crayon-sy">.</span><span class="crayon-i">title</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-44"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-45"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-46"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-47"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-48">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2573512181852-49"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">await </span><span class="crayon-v">alert</span><span class="crayon-sy">.</span><span class="crayon-e">present</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-50"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-51">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-52"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">async </span><span class="crayon-e">openNote</span><span class="crayon-sy">(</span><span class="crayon-v">note</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-53"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">modal</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">await </span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">modalCtrl</span><span class="crayon-sy">.</span><span class="crayon-e">create</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-54"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">component</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">ModalPage</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2573512181852-55"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">componentProps</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">id</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">note</span><span class="crayon-sy">.</span><span class="crayon-i">id</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-56"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">breakpoints</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">0.5</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">0.8</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-57"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">initialBreakpoint</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">0.8</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-58"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-59">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-60"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">await </span><span class="crayon-v">modal</span><span class="crayon-sy">.</span><span class="crayon-e">present</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2573512181852-61"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2573512181852-62"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p><b>Note:</b> Initially I had to use the Angular <code>ChangeDetectorRef</code> and manually trigger a change detection to update the view, in later tests it worked without. See what works for you, most likely you don&#8217;t need that part.</p>
+<p>Now we just need to implement the modal with some additional functionality.</p>
+<h2>Update and Delete Firestore Documents</h2>
+<p>The last step is loading the detail data of a document, which you can do by using the ID that we define as <code>@Input()</code> and getting the document data from our service.</p>
+<p>The other functions to delete and update a document work the same, simply by calling our service functionalities.</p>
+<p>Therefore quickly open the <b>src/app/modal/modal.page.ts</b> and change it to:</p>
+<p></p>
+		<div id="crayon-62882052c2576560311015" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2576560311015-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-2">2</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-4">4</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-6">6</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-8">8</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-10">10</div><div class="crayon-num crayon-marked-num crayon-top" data-line="crayon-62882052c2576560311015-11">11</div><div class="crayon-num crayon-marked-num crayon-bottom crayon-striped-num" data-line="crayon-62882052c2576560311015-12">12</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-14">14</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-16">16</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2576560311015-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-18">18</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-20">20</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-22">22</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2576560311015-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-24">24</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-26">26</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-27">27</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2576560311015-28">28</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-30">30</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-32">32</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-34">34</div><div class="crayon-num" data-line="crayon-62882052c2576560311015-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2576560311015-36">36</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2576560311015-1"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Component</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">Input</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">OnInit</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@angular/core'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-2"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">DataService</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'../services/data.service'</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-3"><span class="crayon-e">import</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-v">ModalController</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-i">ToastController</span><span class="crayon-h"> </span><span class="crayon-sy">}</span><span class="crayon-h"> </span><span class="crayon-i">from</span><span class="crayon-h"> </span><span class="crayon-s">'@ionic/angular'</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-4">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2576560311015-5"><span class="crayon-sy">@</span><span class="crayon-e">Component</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-6"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">selector</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'app-modal'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-7"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">templateUrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'./modal.page.html'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">styleUrls</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-s">'./modal.page.scss'</span><span class="crayon-sy">]</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-9"><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-10"><span class="crayon-e">export</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">ModalPage</span><span class="crayon-h"> </span><span class="crayon-r">implements</span><span class="crayon-h"> </span><span class="crayon-e">OnInit</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top" id="crayon-62882052c2576560311015-11"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">@</span><span class="crayon-e">Input</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-v">id</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-marked-line crayon-bottom crayon-striped-line" id="crayon-62882052c2576560311015-12"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-v">note</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">Note</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-t">null</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-14"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">constructor</span><span class="crayon-sy">(</span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">dataService</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">DataService</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">modalCtrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">ModalController</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-v">toastCtrl</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-v">ToastController</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-h"> </span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-15">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-16"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">ngOnInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2576560311015-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">dataService</span><span class="crayon-sy">.</span><span class="crayon-e">getNoteById</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">id</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">subscribe</span><span class="crayon-sy">(</span><span class="crayon-v">res</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-o">&gt;</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">note</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">res</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-20"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-21">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-22"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">async </span><span class="crayon-e">deleteNote</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2576560311015-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">await </span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">dataService</span><span class="crayon-sy">.</span><span class="crayon-e">deleteNote</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">note</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">modalCtrl</span><span class="crayon-sy">.</span><span class="crayon-e">dismiss</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-25"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-26">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2576560311015-27"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-e">async </span><span class="crayon-e">updateNote</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2576560311015-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">await </span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">dataService</span><span class="crayon-sy">.</span><span class="crayon-e">updateNote</span><span class="crayon-sy">(</span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">note</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">const</span><span class="crayon-h"> </span><span class="crayon-v">toast</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">await </span><span class="crayon-r">this</span><span class="crayon-sy">.</span><span class="crayon-v">toastCtrl</span><span class="crayon-sy">.</span><span class="crayon-e">create</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">message</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-s">'Note updated!.'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">duration</span><span class="crayon-o">:</span><span class="crayon-h"> </span><span class="crayon-cn">2000</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-32"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">}</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-62882052c2576560311015-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">toast</span><span class="crayon-sy">.</span><span class="crayon-e">present</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-34">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2576560311015-35"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2576560311015-36"><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p></p>
+<p>The cool thing is that our <strong>document is also updated in realtime</strong>, just like the list based on the collection on our previous page.</p>
+<p>So since we can now connect our <code>ngModel</code> input fields with our note, you could directly update the data inside Firestore and see the change in your Ionic app.</p>
+<p>For the other direction, we still need to press the update button first so let&#8217;s wrap up the tutorial by adding the last items to show the input fields and two buttons to trigger all actions inside the <b>src/app/modal/modal.page.html</b>:</p>
+<p></p>
+		<div id="crayon-62882052c2578918260349" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover disable-anim" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 18px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 18px !important;"><div class="crayon-num" data-line="crayon-62882052c2578918260349-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-2">2</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-4">4</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-6">6</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-8">8</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-10">10</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom" data-line="crayon-62882052c2578918260349-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-12">12</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-14">14</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-15">15</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2578918260349-16">16</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-18">18</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-19">19</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2578918260349-20">20</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-22">22</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-23">23</div><div class="crayon-num crayon-marked-num crayon-top crayon-bottom crayon-striped-num" data-line="crayon-62882052c2578918260349-24">24</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-26">26</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-62882052c2578918260349-28">28</div><div class="crayon-num" data-line="crayon-62882052c2578918260349-29">29</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 18px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-62882052c2578918260349-1"><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">header</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">toolbar </span><span class="crayon-v">color</span><span class="crayon-o">=</span><span class="crayon-s">"secondary"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">title</span><span class="crayon-o">&gt;</span><span class="crayon-v">Details</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">title</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-4"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">toolbar</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-5"><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">header</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-6">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2578918260349-7"><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">content</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-8"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-e ">div *</span><span class="crayon-v">ngIf</span><span class="crayon-o">=</span><span class="crayon-s">"note"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-9"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">item</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-10"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">label </span><span class="crayon-v">position</span><span class="crayon-o">=</span><span class="crayon-s">"stacked"</span><span class="crayon-o">&gt;</span><span class="crayon-v">Title</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">label</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom" id="crayon-62882052c2578918260349-11"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-i">input</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">(</span><span class="crayon-v">ngModel</span><span class="crayon-sy">)</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-s">"note.title"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">input</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">item</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">item</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">label </span><span class="crayon-v">position</span><span class="crayon-o">=</span><span class="crayon-s">"stacked"</span><span class="crayon-o">&gt;</span><span class="crayon-v">Note</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">label</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2578918260349-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-i">textarea</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">(</span><span class="crayon-v">ngModel</span><span class="crayon-sy">)</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-s">"note.text"</span><span class="crayon-h"> </span><span class="crayon-v">rows</span><span class="crayon-o">=</span><span class="crayon-s">"8"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">textarea</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">item</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-18"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">div</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-19">&nbsp;</div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2578918260349-20"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">button </span><span class="crayon-v">expand</span><span class="crayon-o">=</span><span class="crayon-s">"block"</span><span class="crayon-h"> </span><span class="crayon-v">color</span><span class="crayon-o">=</span><span class="crayon-s">"success"</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">click</span><span class="crayon-sy">)</span><span class="crayon-o">=</span><span class="crayon-s">"updateNote()"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">icon </span><span class="crayon-v">name</span><span class="crayon-o">=</span><span class="crayon-s">"save"</span><span class="crayon-h"> </span><span class="crayon-v">slot</span><span class="crayon-o">=</span><span class="crayon-s">"start"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">icon</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Update</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-23"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">button</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-marked-line crayon-top crayon-bottom crayon-striped-line" id="crayon-62882052c2578918260349-24"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">button </span><span class="crayon-v">expand</span><span class="crayon-o">=</span><span class="crayon-s">"block"</span><span class="crayon-h"> </span><span class="crayon-v">color</span><span class="crayon-o">=</span><span class="crayon-s">"danger"</span><span class="crayon-h"> </span><span class="crayon-sy">(</span><span class="crayon-v">click</span><span class="crayon-sy">)</span><span class="crayon-o">=</span><span class="crayon-s">"deleteNote()"</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-e">icon </span><span class="crayon-v">name</span><span class="crayon-o">=</span><span class="crayon-s">"trash"</span><span class="crayon-h"> </span><span class="crayon-v">slot</span><span class="crayon-o">=</span><span class="crayon-s">"start"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">icon</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">Delete</span></div><div class="crayon-line" id="crayon-62882052c2578918260349-27"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">button</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-62882052c2578918260349-28">&nbsp;</div><div class="crayon-line" id="crayon-62882052c2578918260349-29"><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">ion</span><span class="crayon-o">-</span><span class="crayon-v">content</span><span class="crayon-o">&gt;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div><p> </p>
+<p>And with that you have successfully finished the basic Firebase integration on which you could now add all further functionalities like user authentication or file upload.</p>
+<h2>Conclusion</h2>
+<p>Firebase remains one of the most popular choices for a cloud backend besides <a href="https://devdactic.com/supabase-ionic/" rel="noopener noreferrer" target="_blank">the upcoming star Supabase</a>, which is an open source Firebase alternative.</p>
+<p>I&#8217;ve personally used both and enjoy the different philosophies of SQL and NoSQL, but you can certainly build powerful apps with both cloud backend solutions!</p>
+<p>You can also find a video version of this tutorial below.<br />
+<span class="embed-youtube" style="text-align:center; display: block;"><iframe class='youtube-player' type='text/html' width='640' height='360' src='https://www.youtube.com/embed/8cp8GP-dXbY?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe></span></p>
+<script async data-uid="a310b62862" src="https://devdactic.ck.page/a310b62862/index.js"></script><span class="cp-load-after-post"></span>
+<div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div></div></article><section class="author-box" itemprop="author" itemscope itemtype="http://schema.org/Person"><img alt='' src='https://secure.gravatar.com/avatar/5c899b631c8ad629ef9b738de1b101b4?s=125&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/5c899b631c8ad629ef9b738de1b101b4?s=250&#038;d=mm&#038;r=g 2x' class='avatar avatar-125 photo' height='125' width='125' /><h4 class="author-box-title">About <span itemprop="name">Simon</span></h4><div class="author-box-content" itemprop="description"><p>Ionic Framework Expert • Educator, Consultant &amp; Speaker • Creator of the Ionic Academy</p>
+</div></section>
+<div id="disqus_thread"></div>
+</main><aside class="sidebar sidebar-primary widget-area" role="complementary" aria-label="Primary Sidebar" itemscope itemtype="http://schema.org/WPSideBar" id="genesis-sidebar-primary"><h2 class="genesis-sidebar-title screen-reader-text">Primary Sidebar</h2><section id="zoom-social-icons-widget-2" class="widget zoom-social-icons-widget"><div class="widget-wrap"><h3 class="widgettitle widget-title">Stay connected</h3>
+
+        
+        <ul class="zoom-social-icons-list zoom-social-icons-list--with-canvas zoom-social-icons-list--round zoom-social-icons-list--no-labels">
+
+            
+                                <li class="zoom-social_icons-list__item">
+                    <a class="zoom-social_icons-list__link"
+                       href="https://www.youtube.com/channel/UCZZPgUIorPao48a1tBYSDgg" target="_blank" >
+                                                                        
+                                                    <span class="screen-reader-text">youtube</span>
+                        
+                        <span class="zoom-social_icons-list-span social-icon socicon socicon-youtube" data-hover-rule="background-color" data-hover-color="#e02a20" style="background-color : #e02a20; font-size: 20px; padding:8px" ></span>
+
+                                            </a>
+                </li>
+
+            
+                                <li class="zoom-social_icons-list__item">
+                    <a class="zoom-social_icons-list__link"
+                       href="https://twitter.com/schlimmson" target="_blank" >
+                                                                        
+                                                    <span class="screen-reader-text">twitter</span>
+                        
+                        <span class="zoom-social_icons-list-span social-icon socicon socicon-twitter" data-hover-rule="background-color" data-hover-color="#1da1f2" style="background-color : #1da1f2; font-size: 20px; padding:8px" ></span>
+
+                                            </a>
+                </li>
+
+            
+                                <li class="zoom-social_icons-list__item">
+                    <a class="zoom-social_icons-list__link"
+                       href="https://instagram.com/simongrimm_" target="_blank" >
+                                                                        
+                                                    <span class="screen-reader-text">instagram</span>
+                        
+                        <span class="zoom-social_icons-list-span social-icon socicon socicon-instagram" data-hover-rule="background-color" data-hover-color="#e4405f" style="background-color : #e4405f; font-size: 20px; padding:8px" ></span>
+
+                                            </a>
+                </li>
+
+            
+                                <li class="zoom-social_icons-list__item">
+                    <a class="zoom-social_icons-list__link"
+                       href="https://facebook.com/devdactic" target="_blank" >
+                                                                        
+                                                    <span class="screen-reader-text">facebook</span>
+                        
+                        <span class="zoom-social_icons-list-span social-icon socicon socicon-facebook" data-hover-rule="background-color" data-hover-color="#3b5998" style="background-color : #3b5998; font-size: 20px; padding:8px" ></span>
+
+                                            </a>
+                </li>
+
+            
+                                <li class="zoom-social_icons-list__item">
+                    <a class="zoom-social_icons-list__link"
+                       href="https://www.linkedin.com/in/simongr/" target="_blank" >
+                                                                        
+                                                    <span class="screen-reader-text">linkedin</span>
+                        
+                        <span class="zoom-social_icons-list-span social-icon socicon socicon-linkedin" data-hover-rule="background-color" data-hover-color="#0077B5" style="background-color : #0077B5; font-size: 20px; padding:8px" ></span>
+
+                                            </a>
+                </li>
+
+            
+        </ul>
+
+        </div></section>
+<section id="convertkit_form-5" class="widget convertkit widget_convertkit_form"><div class="widget-wrap"><h3 class="widgettitle widget-title">Newsletter</h3>
+<script async data-uid="c3df7bbc98" src="https://devdactic.ck.page/c3df7bbc98/index.js"></script></div></section>
+<section id="search-6" class="widget widget_search"><div class="widget-wrap"><h3 class="widgettitle widget-title">Search</h3>
+<form class="search-form" itemprop="potentialAction" itemscope itemtype="http://schema.org/SearchAction" method="get" action="https://devdactic.com/" role="search"><meta itemprop="target" content="https://devdactic.com/?s={s}"/><label class="search-form-label screen-reader-text" for="searchform-62882052d79cc">Search for...</label><input itemprop="query-input" type="search" name="s" id="searchform-62882052d79cc" placeholder="Search for..." /><input type="submit" value="Search" /></form></div></section>
+		<section id="recent-posts-4" class="widget widget_recent_entries"><div class="widget-wrap">		<h3 class="widgettitle widget-title">Recent Posts</h3>
+		<ul>
+											<li>
+					<a href="https://devdactic.com/write-unit-tests-ionic-angular/">How to Write Unit Tests for your Ionic Angular App</a>
+									</li>
+											<li>
+					<a href="https://devdactic.com/ionic-identity-vault/">How to Secure your App with Ionic Identity Vault</a>
+									</li>
+											<li>
+					<a href="https://devdactic.com/5-years-ionic-academy/">Celebrating 5 Years Ionic Academy</a>
+									</li>
+											<li>
+					<a href="https://devdactic.com/youtube-ui-with-ionic/">Building the YouTube UI with Ionic</a>
+									</li>
+											<li>
+					<a href="https://devdactic.com/ionic-firebase-auth-upload/">Building an Ionic App with Firebase Authentication &#038; File Upload using AngularFire 7</a>
+									</li>
+					</ul>
+		</div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget2-quick-adsense-2" class="widget widget_adswidget2-quick-adsense"><div class="widget-wrap"><a href="https://devdactic.com/practical-ionic/" target="blank"><img src="https://devdactic.com/wp-content/uploads/2022/01/practical-ionic-small.png"></a></div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget1-quick-adsense-2" class="widget widget_adswidget1-quick-adsense"><div class="widget-wrap"><a href="https://builtwithionic.com/" target="blank"><img src="https://devdactic.com/wp-content/uploads/2022/01/bwi-small.png"></a></div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget3-quick-adsense-2" class="widget widget_adswidget3-quick-adsense"><div class="widget-wrap"><a href="https://ionicacademy.com/?utm_source=devdacticsidebar&utm_medium=ad22" target="blank"><img src="https://devdactic.com/wp-content/uploads/2022/01/ionic-academy-ad.png"></a></div></section>
+</aside></div></div><div class="footer-banner flexible-widgets color  widget-halves widget-area"><div class="wrap"><section id="convertkit_form-2" class="widget convertkit widget_convertkit_form"><div class="widget-wrap"><script async data-uid="a310b62862" src="https://devdactic.ck.page/a310b62862/index.js"></script></div></section>
+<section id="twitter_timeline-4" class="widget widget_twitter_timeline"><div class="widget-wrap"><h3 class="widgettitle widget-title">Follow me on Twitter</h3>
+<a class="twitter-timeline" data-height="600" data-theme="light" data-link-color="#f96e5b" data-border-color="#e8e8e8" data-lang="EN" data-partner="jetpack" href="https://twitter.com/schlimmson" href="https://twitter.com/schlimmson">My Tweets</a></div></section>
+</div><nav class="nav-secondary" itemscope itemtype="http://schema.org/SiteNavigationElement"><div class="wrap"><ul id="menu-footernav" class="menu genesis-nav-menu menu-secondary js-superfish"><li id="menu-item-1634" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-1634"><a href="https://devdactic.com/" itemprop="url"><span itemprop="name">Home</span></a></li>
+<li id="menu-item-785" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-785"><a href="https://devdactic.com/privacy-policy/" itemprop="url"><span itemprop="name">Privacy Policy</span></a></li>
+<li id="menu-item-1650" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1650"><a href="https://devdactic.com/imprint/" itemprop="url"><span itemprop="name">Legal Notice</span></a></li>
+<li id="menu-item-2723" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2723"><a href="https://ionicacademy.com/" itemprop="url"><span itemprop="name">Academy</span></a></li>
+</ul></div></nav></div><div class="footer-widgets flexible-widgets  widget-full widget-area"><div class="wrap"><section id="text-19" class="widget widget_text"><div class="widget-wrap"><h3 class="widgettitle widget-title">Featured on:</h3>
+			<div class="textwidget"><div class="one-sixth"><img src="https://i0.wp.com/devdactic.com/wp-content/uploads/2016/08/polyglotdeveloper.png?ssl=1" style="max-height:50px; width: auto;" data-recalc-dims="1"></div>
+<div class="one-sixth"><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2016/08/ionicframework-featured.png?ssl=1" style="max-height:50px; width: auto;" data-recalc-dims="1"></div>
+<div class="one-sixth"><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2016/08/joshmorony.png?ssl=1" style="max-height:50px; width: auto;" data-recalc-dims="1"></div>
+<div class="one-sixth"><img src="https://i0.wp.com/devdactic.com/wp-content/uploads/2016/08/airpair-featured.png?ssl=1" style="max-height:50px; width: auto;" data-recalc-dims="1"></div>
+<div class="one-sixth"><img src="https://i1.wp.com/devdactic.com/wp-content/uploads/2016/08/backand-featured.png?ssl=1" style="max-height:50px; width: auto;" data-recalc-dims="1"></div>
+</div>
+		</div></section>
+</div></div><footer class="site-footer" itemscope itemtype="http://schema.org/WPFooter"><div class="wrap"><p>Copyright &#x000A9;&nbsp;2022 &#x000B7; <a href="http://my.studiopress.com/themes/smart-passive-income/">Smart Passive Income Pro</a> on <a href="http://www.studiopress.com/">Genesis Framework</a> &#x000B7; <a href="http://wordpress.org/">WordPress</a> &#x000B7; <a rel="nofollow" href="https://devdactic.com/wp-login.php">Log in</a></p></div></footer></div><script>
+(function (window, document) {
+    var loader = function () {
+        var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+    script.src = "https://app.convertbar.com/embed/c983e64e-07ee-46a5-950e-0efac72185b4/convertbar.js";
+    script.id = "app-convertbar-script";
+    tag.parentNode.insertBefore(script, tag);
+  };
+    window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+})(window, document);
+</script>	            <script type="text/javascript" id="modal">
+				jQuery(window).on( 'load', function(){
+					startclock();
+				});
+				function stopclock (){
+				  if(timerRunning) clearTimeout(timerID);
+				  timerRunning = false;
+				  document.cookie="time=0";
+				}
+				function showtime () {
+				  var now = new Date();
+				  var my = now.getTime() ;
+				  now = new Date(my-diffms) ;
+				  document.cookie="time="+now.toLocaleString();
+				  timerID = setTimeout('showtime()',10000);
+				  timerRunning = true;
+				}
+				function startclock () {
+				  stopclock();
+				  showtime();
+				}
+				var timerID = null;
+				var timerRunning = false;
+				var x = new Date() ;
+				var now = x.getTime() ;
+				var gmt = 1653088338 * 1000 ;
+				var diffms = (now - gmt) ;
+				</script>
+	            	            <script type="text/javascript" id="slidein">
+				jQuery(window).on( 'load', function(){
+					startclock();
+				});
+				function stopclock (){
+				  if(timerRunning) clearTimeout(timerID);
+				  timerRunning = false;
+				  document.cookie="time=0";
+				}
+
+				function showtime () {
+				  var now = new Date();
+				  var my = now.getTime() ;
+				  now = new Date(my-diffms) ;
+				  document.cookie="time="+now.toLocaleString();
+				  timerID = setTimeout('showtime()',10000);
+				  timerRunning = true;
+				}
+
+				function startclock () {
+				  stopclock();
+				  showtime();
+				}
+				var timerID = null;
+				var timerRunning = false;
+				var x = new Date() ;
+				var now = x.getTime() ;
+				var gmt = 1653088338 * 1000 ;
+				var diffms = (now - gmt) ;
+				</script>
+	            	<div style="display:none">
+	<div class="grofile-hash-map-5c899b631c8ad629ef9b738de1b101b4">
+	</div>
+	</div>
+<div id="social-rocket-floating-buttons" class="social-rocket-floating-buttons social-rocket-position-left social-rocket-vertical-position-center social-rocket-desktop-only" style=""><div class="social-rocket-floating-button social-rocket-floating-button-square social-rocket-facebook " data-network="facebook"><a class="social-rocket-floating-button-anchor" href="http://www.facebook.com/share.php?u=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F"  target="_blank" aria-label="Share"><span class="social-rocket-floating-button-icon"><i class="fab fa-facebook-f"></i></span></a></div><div class="social-rocket-floating-button social-rocket-floating-button-square social-rocket-linkedin " data-network="linkedin"><a class="social-rocket-floating-button-anchor" href="https://www.linkedin.com/cws/share?url=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F"  target="_blank" aria-label="Share"><span class="social-rocket-floating-button-icon"><i class="fab fa-linkedin-in"></i></span></a></div><div class="social-rocket-floating-button social-rocket-floating-button-square social-rocket-reddit " data-network="reddit"><a class="social-rocket-floating-button-anchor" href="http://reddit.com/submit?url=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F&title=Build Your First Ionic App with Firebase using AngularFire 7"  target="_blank" aria-label="Share"><span class="social-rocket-floating-button-icon"><i class="fab fa-reddit-alien"></i></span></a></div><div class="social-rocket-floating-button social-rocket-floating-button-square social-rocket-twitter " data-network="twitter"><a class="social-rocket-floating-button-anchor" href="https://twitter.com/intent/tweet?text=Build%20Your%20First%20Ionic%20App%20with%20Firebase%20using%20AngularFire%207&url=https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F"  target="_blank" aria-label="Tweet"><span class="social-rocket-floating-button-icon"><i class="fab fa-twitter"></i></span></a></div><div class="social-rocket-floating-button social-rocket-floating-button-square social-rocket-email social-rocket-no-pop" data-network="email"><a class="social-rocket-floating-button-anchor" href="mailto:?Subject=Build%20Your%20First%20Ionic%20App%20with%20Firebase%20using%20AngularFire%207&Body=I%20saw%20this%20and%20thought%20of%20you%21%20https%3A%2F%2Fdevdactic.com%2Fionic-firebase-angularfire-7%2F"  target="_blank" aria-label="Email"><span class="social-rocket-floating-button-icon"><i class="fas fa-envelope"></i></span></a></div></div><link rel='stylesheet' id='crayon-css'  href='https://devdactic.com/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all' />
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/jetpack/_inc/build/photon/photon.min.js?ver=20130122'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var wpcf7 = {"apiSettings":{"root":"https:\/\/devdactic.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/contact-form-7/includes/js/scripts.js?ver=5.1.6'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var cnArgs = {"ajaxUrl":"https:\/\/devdactic.com\/wp-admin\/admin-ajax.php","nonce":"f84d90b05b","hideEffect":"fade","position":"bottom","onScroll":"0","onScrollOffset":"100","onClick":"0","cookieName":"cookie_notice_accepted","cookieTime":"2592000","cookieTimeRejected":"2592000","cookiePath":"\/","cookieDomain":"","redirection":"0","cache":"0","refuse":"0","revokeCookies":"0","revokeCookiesOpt":"automatic","secure":"1","coronabarActive":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/cookie-notice/js/front.min.js?ver=1.3.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var countVars = {"disqusShortname":"devdactic"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/disqus-comment-system/public/js/comment_count.js?ver=3.0.19'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var embedVars = {"disqusConfig":{"integration":"wordpress 3.0.19"},"disqusIdentifier":"78992 https:\/\/devdactic.com\/?p=78992","disqusShortname":"devdactic","disqusTitle":"Build Your First Ionic App with Firebase using AngularFire 7","disqusUrl":"https:\/\/devdactic.com\/ionic-firebase-angularfire-7\/","postId":"78992"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/disqus-comment-system/public/js/comment_embed.js?ver=3.0.19'></script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx-jetpack.js?ver=202220'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var sticky_anything_engage = {"element":"#genesis-nav-primary","topspace":"0","minscreenwidth":"0","maxscreenwidth":"999999","zindex":"1","legacymode":"","dynamicmode":"","debugmode":"","pushup":".footer-banner","adminbar":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/sticky-menu-or-anything-on-scroll/assets/js/stickThis.js?ver=2.1.1'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-includes/js/comment-reply.min.js?ver=5.1.13'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-includes/js/hoverIntent.min.js?ver=1.8.1'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/themes/genesis/lib/js/menu/superfish.min.js?ver=1.7.5'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/themes/genesis/lib/js/menu/superfish.args.min.js?ver=2.4.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var SPIL10n = {"mainMenu":"Menu","subMenu":"Menu"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/themes/smart-passive-income-pro/js/responsive-menu.js?ver=1.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tve_dash_front = {"ajaxurl":"https:\/\/devdactic.com\/wp-admin\/admin-ajax.php","force_ajax_send":"","is_crawler":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/thrive-visual-editor/thrive-dashboard/js/dist/frontend.min.js?ver=2.2.11.2'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/social-icons-widget-by-wpzoom/assets/js/social-icons-widget-frontend.js?ver=1608971221'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/jetpack/_inc/build/twitter-timeline.min.js?ver=4.0.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var q2w3_sidebar_options = [{"sidebar":"sidebar","margin_top":90,"margin_bottom":1300,"stop_id":"","screen_max_width":0,"screen_max_height":0,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["adswidget1-quick-adsense-2","adswidget3-quick-adsense-2"]}];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/q2w3-fixed-widget/js/q2w3-fixed-widget.min.js?ver=5.1.9'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var socialRocket = {"ajax_url":"https:\/\/devdactic.com\/wp-admin\/admin-ajax.php","where_we_at":{"id":78992,"type":"post","url":"https:\/\/devdactic.com\/ionic-firebase-angularfire-7\/","settings_key":"post_type_post"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/social-rocket/js/script.js?ver=1.3.0'></script>
+<script type='text/javascript' src='https://devdactic.com/wp-includes/js/wp-embed.min.js?ver=5.1.13'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"https:\/\/devdactic.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://devdactic.com/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta'></script>
+<script type="text/javascript">var tcb_post_lists=JSON.parse('[]');</script><script type='text/javascript' src='https://stats.wp.com/e-202220.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:7.2.3',blog:'82402240',post:'78992',tz:'2',srv:'devdactic.com'} ]);
+	_stq.push([ 'clickTrackerInit', '82402240', '78992' ]);
+</script>
+
+		<!-- Cookie Notice plugin v1.3.2 by Digital Factory https://dfactory.eu/ -->
+		<div id="cookie-notice" role="banner" class="cookie-notice-hidden cookie-revoke-hidden cn-position-bottom" aria-label="Cookie Notice" style="background-color: rgba(0,0,0,1);"><div class="cookie-notice-container" style="color: #fff;"><span id="cn-notice-text" class="cn-text-container">We use cookies to ensure that we give you the best experience on our website. If you continue to use this site we will assume that you are happy with it.</span><span id="cn-notice-buttons" class="cn-buttons-container"><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie cn-button bootstrap button" aria-label="Ok">Ok</a><a href="https://devdactic.com/privacy-policy/" target="_blank" id="cn-more-info" class="cn-more-info cn-button bootstrap button" aria-label="Read more">Read more</a></span><a href="javascript:void(0);" id="cn-close-notice" data-cookie-set="accept" class="cn-close-icon" aria-label="Ok"></a></div>
+			
+		</div>
+		<!-- / Cookie Notice plugin --></body></html>

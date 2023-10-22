@@ -1,0 +1,445 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+   
+  </ion-toolbar>
+   
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  
+  <div class="bg">
+  
+
+    <div id="container">
+      <div class="card">
+       <div class="profilePresent">
+         <ion-avatar>
+           <img src="../../assets/images.jfif"/>
+         </ion-avatar>
+     <ion-item>
+      
+     
+          <div class="textShow">
+          
+           <ion-label>Bienvenue </ion-label>
+           <ion-label>
+            {{email}}
+          </ion-label> 
+           
+          
+         </div>
+        </ion-item>
+        </div>
+      
+        <div class="flex">
+      <ion-card class="ion-padding">  
+        <swiper class="banner-slides" [enabled]="true" [pagination]="true"  [initialSlide]="0.3" [slidesPerView]="1" [spaceBetween]="3" [centeredSlides]="true" [autoplay]="true"
+        #swiper>
+        <ng-template swiperSlide>
+   
+          <img src="../../../assets/logo/ISAGO.jpg" alt=""></ng-template>
+        <ng-template swiperSlide><img src="../../../assets/logo/canalpost3.jpg" alt=""></ng-template>
+        <ng-template swiperSlide><img src="../../../assets/logo/malivisionlogo.png" alt=""></ng-template>
+        <ng-template swiperSlide><img src="../../../assets/logo/edmlogo.jpg" alt=""></ng-template>
+        <ng-template swiperSlide><img src="../../../assets/logo/somagep-logo.png" alt=""></ng-template>
+        </swiper>
+   </ion-card>
+   
+   </div>
+     <div class="btncompte">
+       
+     </div>
+    
+   
+   
+   <div class="btnSection">
+   <!--   
+     1 - Button payement vous dirige vers le module paiement
+     2 - Button Call vous permet de lancer l'appel vers le service client
+    -->
+   
+    
+       <ion-button color="warning" shape="round" class="btnaddpayement" id="open-modal" expand="block">
+        <ion-icon slot="icon-only" name="cash" ></ion-icon>
+        Payement
+       </ion-button>
+     
+     
+     
+   
+   </div>
+   </div>
+  
+   
+   <!-- La liste section de Tab affiche la liste des cinq derniers paiement
+    -->
+   
+    <div class="historique">
+     <ion-list-header>
+      <ion-label color="light">Dernières transactions
+      </ion-label>
+     </ion-list-header>
+     
+   
+   
+   
+  
+     
+       <ion-item *ngFor="let data of dataHistoriqueEDM">
+      
+      <ion-avatar slot="start">
+        <img src="{{data.icon}}" />
+      </ion-avatar>
+      <ion-label color="light">
+        {{data.nom}}
+    </ion-label>
+    <ion-item *ngFor="let data of Edmdata|async">
+      <ion-text color="warning" slot="start">
+        <ion-label>{{data.montantpaye}} </ion-label>
+      </ion-text>
+    </ion-item>
+    
+    
+    </ion-item> 
+    <ion-item *ngFor="let data of dataHistoriqueSOMAGEP">
+      
+      <ion-avatar slot="start">
+        <img src="{{data.icon}}" />
+      </ion-avatar>
+      <ion-label color="light">
+        {{data.nom}}
+    </ion-label>
+    <ion-item *ngFor="let data of Somagepdata|async">
+      <ion-text color="warning" slot="start">
+        <ion-label>{{data.montantpaye}}</ion-label>
+      </ion-text>
+    </ion-item>
+    
+    </ion-item> 
+    <ion-item *ngFor="let data of dataHistoriqueIsago">
+      
+      <ion-avatar slot="start">
+        <img src="{{data.icon}}" />
+      </ion-avatar>
+      <ion-label color="light">
+        {{data.nom}}
+    </ion-label>
+  
+    <ion-item *ngFor="let data of Isagodata|async">
+      <ion-text color="warning"  slot="start">
+        <ion-label>{{data.montantpaye}}</ion-label>
+      </ion-text>
+  
+    </ion-item>
+    
+    </ion-item>
+    <ion-item *ngFor="let data of dataHistoriqueCanal">
+      
+      <ion-avatar slot="start">
+        <img src="{{data.icon}}"/>
+      </ion-avatar>
+      
+      <ion-label color="light">
+        {{data.nom}}
+    </ion-label>
+    <ion-item *ngFor="let data of Canaldata|async">
+      <ion-text color="warning" slot="start">
+      <ion-label>{{data.montantpaye}}</ion-label>
+      </ion-text>
+  
+    </ion-item>
+    
+    </ion-item>
+    <ion-item *ngFor="let data of dataHistoriqueMalivision">
+      
+      <ion-avatar slot="start">
+        <img src="{{data.icon}}" />
+      </ion-avatar>
+      <ion-label color="light">
+        {{data.nom}}
+    </ion-label>
+  
+    <ion-item *ngFor="let data of Malivisiondata|async">
+      <ion-text color="warning" slot="start">
+        <ion-label>{{data.montantpaye}}</ion-label>
+      </ion-text>
+    </ion-item>
+    
+    </ion-item>
+  
+    
+  </div>
+     
+   </div>
+  </div> 
+
+  <div class="modal">
+  <ion-modal #modal trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Payer vos factures </ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">RETOUR</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+    
+      <ion-content class="ion-padding" color="light">
+       
+        <div class="flex">
+
+   
+ 
+          <ion-accordion-group>
+            <ion-accordion   value="Facture EDM">
+              <ion-item slot="header" *ngFor="let data of dataElectricite">
+                <ion-thumbnail slot="start">
+                  <img src="{{data.icon}}">
+                </ion-thumbnail>
+                <ion-label color="dark">{{data.nom}}</ion-label>
+              </ion-item>
+              <ion-list slot="content">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero souscripteur" [(ngModel)]="dataFacture.nmo" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero Compteur" [(ngModel)]="dataFacture.ncompteur" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input type="number" color="dark" placeholder="Montant" [(ngModel)]="dataFacture.montant"  clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+               <ion-button color="success" (click)="AddPayementEdm()">
+                          <ion-icon slot="start" ></ion-icon>
+                         VALIDER
+                        </ion-button>
+                       
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-accordion>
+            
+            <ion-accordion value="Facture SOMAGEP">
+              <ion-item slot="header" *ngFor="let data of dataSomagep">
+                <ion-thumbnail slot="start">
+                  <img src="{{data.icon}}">
+                </ion-thumbnail>
+                <ion-label color="dark">{{data.nom}}</ion-label>
+              </ion-item>
+              <ion-list slot="content">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero souscripteur" [(ngModel)]="dataFacturesomagep.nmo" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero Compteur" [(ngModel)]="dataFacturesomagep.ncompteur" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input type="number" color="dark" placeholder="Montant" [(ngModel)]="dataFacturesomagep.montant" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                      <ion-button color="success" (click)="AddPayementSomagep()">
+                          <ion-icon slot="start" name="confirm"></ion-icon>
+                          VALIDER
+                        </ion-button>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-accordion>
+        
+            <ion-accordion value="Recharge ISAGO">
+              <ion-item slot="header" *ngFor="let data of dataIsago">
+                <ion-thumbnail slot="start">
+                  <img src="{{data.icon}}">
+                </ion-thumbnail>
+                <ion-label color="dark">{{data.nom}}</ion-label>
+              </ion-item>
+              <ion-list slot="content">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero souscripteur" [(ngModel)]="dataFactureisago.nmo" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero Compteur" [(ngModel)]="dataFactureisago.ncompteur"  clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input type="number" color="dark" placeholder="Montant" [(ngModel)]="dataFactureisago.montant"  clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                      <ion-button color="success" (click)="AddPayementIsago()">
+                          <ion-icon slot="start" name="confirm"></ion-icon>
+                          VALIDER
+                        </ion-button>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-accordion>
+        
+            <ion-accordion value="AbonnementCanal">
+              <ion-item slot="header" *ngFor="let data of dataCanal">
+                <ion-thumbnail slot="start">
+                  <img src="{{data.icon}}">
+                </ion-thumbnail>
+                <ion-label color="dark">{{data.nom}}</ion-label>
+              </ion-item>
+              <ion-list slot="content">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero souscripteur" [(ngModel)]="dataFacturecanal.nmo" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero Décodeur" [(ngModel)]="dataFacturecanal.ndecodeur" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-list>
+                        <ion-item>
+                          <ion-item>
+                            <ion-select placeholder="Selectionnez votre formule">
+                              <ion-select-option value="access">ACCESS</ion-select-option>
+                              <ion-select-option value="evasion" >EVASION</ion-select-option>
+                              <ion-select-option value="essentiel">ESSENTIEL+</ion-select-option>
+                              <ion-select-option value="access+" >ACCESS+</ion-select-option>
+                              <ion-select-option value="evasion+" >EVASION+</ion-select-option>
+                              <ion-select-option value="toutcanal">EVASION+</ion-select-option>
+                            </ion-select>
+                          </ion-item>
+                        </ion-item>
+                        
+                      </ion-list>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input type="number" color="dark" placeholder="Montant" [(ngModel)]="dataFacturecanal.montant" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                      <ion-button color="success" (click)="AddPayementcanal()">
+                          <ion-icon slot="start" name="confirm"></ion-icon>
+                          VALIDER
+                        </ion-button>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-accordion>
+        
+        
+            <ion-accordion value="AbonnementMalivision">
+              <ion-item slot="header" *ngFor="let data of dataMalivision">
+                <ion-thumbnail slot="start">
+                  <img src="{{data.icon}}">
+                </ion-thumbnail>
+                <ion-label color="dark">{{data.nom}}</ion-label>
+              </ion-item>
+              <ion-list slot="content">
+                <ion-grid fixed>
+                  <ion-row>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero souscripteur" [(ngModel)]="dataFacturemalivision.nmo" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input color="dark" type="number" placeholder="Numero Décodeur" [(ngModel)]="dataFacturemalivision.ndecodeur" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-list>
+                        <ion-item>
+                          <ion-select placeholder="Selectionnez votre formule">
+                            <ion-select-option value="decouverte">DECOUVERTE</ion-select-option>
+                            <ion-select-option value="MALIVISIONL" >MALIVISION</ion-select-option>
+                            <ion-select-option value="decouverte+Canal">DECOUVERTE+CANAL</ion-select-option>
+                            <ion-select-option value="horonya+" >HORONYA</ion-select-option>
+                            <ion-select-option value="vip">HORONYA+CANAL</ion-select-option>
+                            
+                          </ion-select>
+                        </ion-item>
+                        
+                      </ion-list>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-input type="number" color="dark" placeholder="Montant" [(ngModel)]="dataFacturemalivision.montant" clearInput></ion-input>
+                      </ion-item>
+                    </ion-col>
+                    <ion-col size="6">
+                      <ion-item>
+                        <ion-button color="success" (click)="AddPayementmalivision()">
+                          <ion-icon slot="start" name="confirm"></ion-icon>
+                          VALIDER
+                        </ion-button>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-list>
+            </ion-accordion>
+        
+        
+            
+        
+          </ion-accordion-group>
+      
+      
+      
+         
+          
+      
+          
+          
+           
+      </div>
+
+
+      </ion-content>
+   
+    </ng-template>
+  </ion-modal>
+</div>
+
+</ion-content>

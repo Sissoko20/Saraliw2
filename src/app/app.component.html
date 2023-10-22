@@ -1,3 +1,105 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane>
+    <ion-menu content-id="menu" side="start" type="push" *ngIf="connected">  
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Paramètres</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+  
+          <ion-menu-toggle>
+            <ion-item>
+              <ion-icon slot="start" name="information-outline"></ion-icon>
+              <ion-label expand="block" (click)="setOpen(true)">A propos </ion-label>
+              <ion-modal [isOpen]="isModalOpen">
+                <ng-template>
+                  <ion-header>
+                    <ion-toolbar>
+                      <ion-title>A propos </ion-title>
+                      <ion-buttons slot="end">
+                        <ion-button (click)="setOpen(false)">Close</ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-header>
+                  <ion-content class="ion-padding">
+                    <ion-item-group>
+                      <ion-item-divider>
+                        <div class="logoapp">
+                          <img src="../../assets/logo/factureapplogo.png" >
+                          
+                            </div>
+                        
+                        
+                      </ion-item-divider>
+                    
+                      <ion-item>
+                        <ion-text>I ka facture est un application mobile 
+                          qui permet aux clients des operateurs telephoniques de 
+                          payer en toute facilité leurs factures d'eau 
+                          , d'electricité, et d'abonnement TV
+                        </ion-text>
+                      </ion-item>
+                      <ion-item lines="nones">
+                        <ion-text>Pays ML</ion-text>
+                      </ion-item>
+                      <ion-item lines="nones">
+                        <ion-label>Application version </ion-label>
+                        <ion-text>0.0.1</ion-text>
+                      </ion-item>
+                      <ion-item lines="nones">
+                        <ion-label>Framework et Serveur version </ion-label>
+                            <ion-text> Ionic: 6.0.0 </ion-text>
+                         </ion-item>
+                         <ion-item lines="nones">
+                          <ion-label>Ionic </ion-label>
+                              <ion-text>6.0.0 </ion-text>
+                           </ion-item>
+                         <ion-item>
+                          <ion-label>Firebase</ion-label>
+                          <ion-text>9.8.1</ion-text>
+                         </ion-item>
+                           <ion-item lines="nones">
+                            <ion-label>Angular Fire</ion-label>
+                            <ion-text>7.3.0</ion-text>
+                             </ion-item>
+                             <ion-item lines="nones">
+                              <ion-label>Conception et realisation</ion-label>
+                              <ion-text>Modibo Sissoko & Fatoumata Diawara</ion-text>
+                               </ion-item>
+                  
+                               <ion-item>
+                                <ion-text>Tous droits reserved copyright @2021-2022
+                                </ion-text>
+                              </ion-item>
+                    </ion-item-group>
+                  </ion-content>
+                </ng-template>
+              </ion-modal>
+            </ion-item>
+          </ion-menu-toggle>
+      
+          <ion-menu-toggle>
+            <ion-item>
+              
+              <ion-icon slot="start" name="moon"></ion-icon>
+                <ion-label>Mode nuit </ion-label>
+                <ion-toggle (ionChange)="darkactive($event)"></ion-toggle>
+              </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+      <ion-footer>
+        <ion-item>
+        <ion-icon name="log-out-outline"></ion-icon>
+              <ion-label (click)="logout()" routerLink="/login">Deconnexion</ion-label>
+            </ion-item>
+      </ion-footer> 
+    </ion-menu>
+  </ion-split-pane>
+  
+  
+  
+    <ion-router-outlet id="menu"></ion-router-outlet>
 </ion-app>
